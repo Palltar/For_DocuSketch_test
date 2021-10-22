@@ -4,8 +4,9 @@ import os
 
 
 class DrawingPlots:
-
-    def draw_plots(self, link, size=50, side_x=20, side_y=20):
+        # size: кличесвто строк на одном графике
+        # ide_x=20, side_y=20 размеры в пикселях
+    def draw_plots(self, link, size=70, side_x=20, side_y=20):
         # Проверка на наличие директории "Графики", создание данной директории если отсуствует.
         file_path = "Графики"
         if not os.path.exists(file_path):
@@ -32,7 +33,7 @@ class DrawingPlots:
                 iris_data[start:start+size].plot(x="name", kind="bar", figsize=(side_x, side_y), stacked=False,
                                                  title=f'plots_{namber_plots}')
                 plt.savefig('Графики/'+f'plots_{namber_plots}.png')
-                plt.close()
+
                 return_link.append('Графики/'+f'plots_{namber_plots}.png')
                 start += size
             if remainder_count:
@@ -46,7 +47,7 @@ class DrawingPlots:
             return_link = []
             iris_data[0:remainder_count].plot(x="name", kind="bar", figsize=(side_x, side_y), stacked=False)
             plt.savefig('Графики/' + f'plots_last.png')
-            plt.close()
+
             return_link.append('Графики/plots.png')
         return return_link
 
